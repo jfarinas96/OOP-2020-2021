@@ -183,6 +183,20 @@ public class Loops extends PApplet {
             }
             case 8:
             {
+                /*
+                int sides = 5;
+                float theta = TWO_PI /(float) sides;
+                float radius = 100;
+                stroke(255);
+                for(int i = 0; i < sides; i++)
+                {
+                    float angle = theta * i;
+                    float x = sin(angle) * radius;
+                    float y = cos(angle) * radius;
+                    line(cx, cy, cx + x, cy - y);
+                }
+                break;
+                */
                 int sides = 5;
                 float theta = TWO_PI / (float) sides;
                 float radius = 200;
@@ -193,7 +207,7 @@ public class Loops extends PApplet {
                     float y1 = cos(theta * (i - 1)) * radius;
                     float x2 = sin(theta * i) * radius;
                     float y2 = cos(theta * i) * radius;
-                    line(cx + x1, cy + y1, cx + x2, cy + y2);
+                    line(cx + x1, cy - y1, cx + x2, cy - y2);
                 }
                 break;
             }
