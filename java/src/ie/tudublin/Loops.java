@@ -172,10 +172,9 @@ public class Loops extends PApplet {
                 float w = width / (float) numRects;
                 for (int i = 0; i < numRects; i++)
                 {
-                    fill(100, 255, 255);
                     for (int j = 0; j < numRects; j = j + 2)
                     {
-                        
+                        fill(100, 255, 255);
                         rect(j * w, i * w, w, w);
                         fill(150, 255, 255);
                         rect(j * w, (i + 1) * w, w, w);
@@ -184,7 +183,19 @@ public class Loops extends PApplet {
             }
             case 8:
             {
-                
+                int sides = 5;
+                float theta = TWO_PI / (float) sides;
+                float radius = 200;
+                stroke(255);
+                for (int i = 1; i <= sides; i++)
+                {
+                    float x1 = sin(theta * (i - 1)) * radius;
+                    float y1 = cos(theta * (i - 1)) * radius;
+                    float x2 = sin(theta * i) * radius;
+                    float y2 = cos(theta * i) * radius;
+                    line(cx + x1, cy + y1, cx + x2, cy + y2);
+                }
+                break;
             }
         }
     }
