@@ -55,6 +55,10 @@ public class Arrays extends PApplet {
 
     int mode = 0;
 
+    float[] rainfall = {45, 37, 55, 27, 38, 50, 79, 48, 104, 31, 100, 58};
+    String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    float[] arr = new float[100]; //100 float array
+
     public void keyPressed() {
         // the value of mode will be the number of the 
         // number key pressed
@@ -64,6 +68,39 @@ public class Arrays extends PApplet {
 
     public void setup() {
         colorMode(RGB);
+
+        for (int i = 0; i < rainfall.length; i++)
+        {
+            println(months[i] + "\t" + rainfall[i]);
+        }
+
+        // Enhanced for loop
+        for (float f:rainfall)
+        {
+            println(f);
+        }
+
+        int high = 0;
+        int low = 0;
+        float total = 0;
+
+        for (int i = 0; i < rainfall.length; i++)
+        {
+            if (rainfall[i] > rainfall[high])
+                high = i;
+
+            if (rainfall[i] < rainfall[low])
+                low = i;
+
+            total += rainfall[i];
+        }
+
+        float average = total / (float) rainfall.length;
+
+        println("Month with the highest rainfall: " + months[high]);
+        println("Month with the lowest rainfall: " + months[low]);
+        println("Total rainfall is " + total);
+        println("Average rainfall is " + average);
     }
 
     float offset = 0;
