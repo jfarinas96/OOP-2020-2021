@@ -101,15 +101,26 @@ public class Arrays extends PApplet {
         println("Month with the lowest rainfall: " + months[low]);
         println("Total rainfall is " + total);
         println("Average rainfall is " + average);
+
+        // bar chart
+        colorMode(HSB);
+        float w = width / (float) rainfall.length;
+        for (int i = 0; i < rainfall.length; i++)
+        {
+            noStroke();
+            fill(random(255), 255, 255);
+            float x = map(i, 0, rainfall.length, 0, width);
+            rect(x, height, w, -rainfall[i]);
+        }
     }
 
     float offset = 0;
 
     public void draw() {
-        background(0);
+        // background(0);
         // drawGrid();
         colorMode(HSB);
         float c = map(mouseX, 0, width, 0, 255);
-        background(c, 255, 255);
+        // background(c, 255, 255);
     }
 }
