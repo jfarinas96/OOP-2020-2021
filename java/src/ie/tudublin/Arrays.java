@@ -110,6 +110,7 @@ public class Arrays extends PApplet {
         // Draw a bar chart of the rainfall!!
         // Use the map function
 
+        /*
         colorMode(HSB);
         float w = width / (float) rainfall.length;
         for (int i = 0; i < rainfall.length; i++) {
@@ -118,14 +119,42 @@ public class Arrays extends PApplet {
             float x = map(i, 0, rainfall.length, 0, width);
             rect(x, height, w, -rainfall[i]);
         }
+        */
     }
 
 
     public void draw() {
         background(0);
+        colorMode(RGB);
+        stroke(255);
         switch (mode) {
             case 0: {
                 // Bar chart
+                colorMode(HSB);
+                float border = width * 0.1f;
+                float w = (width - (2 * border)) / (float) rainfall.length;
+                float cgap = 255 / (float) rainfall.length;
+                line(border, height - border, width - border, height - border);
+                line(border, border, border, height - border);
+                textAlign(CENTER, CENTER);
+                fill(0, 0, 100);
+                text("Rainfall Bar Chart", width / 2, border * 0.5f);
+
+                for (int i = 0; i <= rainfall.length; i++) {
+                    float x = map(i, 0, rainfall.length,  height - border, border);
+                    line(border, x, border * 0.8f, x);
+                    fill(0, 0, 100);
+                    text(i * 10, border * 0.5f, x);
+                }
+                
+                for (int i = 0; i < rainfall.length; i++) {
+                    fill(cgap * i, 255, 255);
+                    float x = map(i, 0, rainfall.length, border, width - border);
+                    float y = map(rainfall[i], 0, 120, border, height - border);
+                    rect(x, height - border, w, -y);
+                    fill(0, 0, 100);
+                    text(months[i], x + (w / 2), height - (border * 0.5f));
+                }
                 break;
             }
             case 1: {
