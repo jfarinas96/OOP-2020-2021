@@ -125,8 +125,7 @@ public class Arrays extends PApplet {
 
     public void draw() {
         background(0);
-        colorMode(RGB);
-        stroke(255);
+        stroke(0, 0, 100);
         switch (mode) {
             case 0: {
                 // Bar chart
@@ -143,7 +142,6 @@ public class Arrays extends PApplet {
                 for (int i = 0; i <= rainfall.length; i++) {
                     float x = map(i, 0, rainfall.length,  height - border, border);
                     line(border, x, border * 0.8f, x);
-                    fill(0, 0, 100);
                     text(i * 10, border * 0.5f, x);
                 }
                 
@@ -151,7 +149,7 @@ public class Arrays extends PApplet {
                     fill(cgap * i, 255, 255);
                     float x = map(i, 0, rainfall.length, border, width - border);
                     float y = map(rainfall[i], 0, 120, border, height - border);
-                    rect(x, height - border, w, -y);
+                    rect(x, height - border, w, -(y - border));
                     fill(0, 0, 100);
                     text(months[i], x + (w / 2), height - (border * 0.5f));
                 }
@@ -159,6 +157,33 @@ public class Arrays extends PApplet {
             }
             case 1: {
                 // Trend line
+                float border = width * 0.1f;
+                float w = (width - (2 * border)) / (float) rainfall.length;
+                line(border, height - border, width - border, height - border);
+                line(border, border, border, height - border);
+                textAlign(CENTER, CENTER);
+                fill(0, 0, 100);
+                text("Rainfall Trend Chart", width / 2, border * 0.5f);
+
+                for (int i = 0; i <= rainfall.length; i++) {
+                    float x = map(i, 0, rainfall.length,  height - border, border);
+                    line(border, x, border * 0.8f, x);
+                    text(i * 10, border * 0.5f, x);
+                }
+                
+                for (int i = 0; i < rainfall.length; i++) {
+                    float x = map(i, 0, rainfall.length, border, width - border);
+                    text(months[i], x + (w / 2), height - (border * 0.5f));
+                }
+
+                for (int i = 0; i < rainfall.length - 1; i++) {
+                    float x1 = map(i, 0, rainfall.length, border, width - border);
+                    float y1 = map(rainfall[i], 0, 120, height - border, border);
+                    float x2 = map(i + 1, 0, rainfall.length, border, width - border);
+                    float y2 = map(rainfall[i + 1], 0, 120, height - border, border);
+                    line(x1 + (w / 2), y1, x2 + (w / 2), y2);
+                }
+                break;
             }
             case 2: {
                 // Pie chart
