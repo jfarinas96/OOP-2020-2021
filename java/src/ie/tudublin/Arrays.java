@@ -39,6 +39,8 @@ public class Arrays extends PApplet {
 
     public void settings() {
         size(500, 500);
+        cx = width / 2;
+        cy = height / 2; 
 
         // Testing the map function
         float f = map1(2, 0, 10, 0, width);
@@ -56,10 +58,12 @@ public class Arrays extends PApplet {
     }
 
     int mode = 0;
+    float cx, cy;
 
     float[] rainfall = { 45, 37, 55, 27, 38, 50, 79, 48, 104, 31, 100, 58 };
     String[] months = { "Jan", "Feb", "March", "April", "May", "June", "July", "August", "Sept", "Oct", "Nov", "Dec" };
     float[] arr = new float[100]; // 100 float array
+    float sum = 0;
 
     public void keyPressed() {
         // the value of mode will be the number of the
@@ -85,7 +89,6 @@ public class Arrays extends PApplet {
         // What is the total rainfall?
         // What is the average rainfall??
 
-        float sum = 0;
         int minIndex = 0;
         int maxIndex = 0;
         sum = 0;
@@ -187,6 +190,67 @@ public class Arrays extends PApplet {
             }
             case 2: {
                 // Pie chart
+                colorMode(HSB);
+                float border = width * 0.1f;
+                float diameter = width - (4 * border);
+                float cgap = 255 / (float) rainfall.length;
+                float previous = 0;
+                float next = 0;
+                textAlign(CENTER, CENTER);
+                fill(0, 0, 100);
+                text("Rainfall Pie Chart", width / 2, border * 0.5f);
+                
+                for (int i = 0; i < rainfall.length; i++) {
+                    float percent = (float) sum / rainfall[i];
+                    float theta = TWO_PI / percent;
+                    next += theta;
+                    fill(cgap * i, 255, 255);
+                    arc(width / 2, height / 2, diameter, diameter, previous, next);
+                    previous += theta;
+
+                    /*
+                    float x = sin(theta * i) * (diameter / 2);
+                    float y = cos(theta * i) * (diameter / 2);
+                    fill(0, 0, 100);
+                    text(months[i], cx + x, cy + y);
+                    */
+                }
+                /*
+                stroke(255);
+                for(int i = 1 ; i <= sides ; i ++)
+                {
+                    float x1 = sin(theta * (i - 1)) * radius;
+                    float y1 = cos(theta * (i - 1)) * radius;
+                    float x2 = sin(theta * i) * radius;
+                    float y2 = cos(theta * i) * radius;
+                    line(cx + x1, cy + y1, cx + x2, cy + y2);
+                }
+
+                colorMode(HSB);
+                float border = width * 0.1f;
+                float w = (width - (2 * border)) / (float) rainfall.length;
+                float cgap = 255 / (float) rainfall.length;
+                line(border, height - border, width - border, height - border);
+                line(border, border, border, height - border);
+                textAlign(CENTER, CENTER);
+                fill(0, 0, 100);
+                text("Rainfall Bar Chart", width / 2, border * 0.5f);
+
+                for (int i = 0; i <= rainfall.length; i++) {
+                    float x = map(i, 0, rainfall.length,  height - border, border);
+                    line(border, x, border * 0.8f, x);
+                    text(i * 10, border * 0.5f, x);
+                }
+                
+                for (int i = 0; i < rainfall.length; i++) {
+                    fill(cgap * i, 255, 255);
+                    float x = map(i, 0, rainfall.length, border, width - border);
+                    float y = map(rainfall[i], 0, 120, border, height - border);
+                    rect(x, height - border, w, -(y - border));
+                    fill(0, 0, 100);
+                    text(months[i], x + (w / 2), height - (border * 0.5f));
+                }*/
+                break;
             }
         }
     }
