@@ -170,7 +170,15 @@ public class Life extends PApplet {
 
         if (keyCode == '2')
         {
-            
+            for(int row = 0 ; row < size ; row ++)
+            {
+                for (int col = 0 ; col < size ; col ++)
+                {
+                    board[row][col] = false;
+                }
+            }
+
+            drawBoard(board);
         }
         if (keyCode == '3')
         {
@@ -181,6 +189,7 @@ public class Life extends PApplet {
     public void setup() {
         colorMode(RGB);
         randomize();
+        frameRate(1);
         
         /*
         board[0][1] = true;
@@ -191,7 +200,7 @@ public class Life extends PApplet {
 
         cellSize = width / (size);
         
-        //printBoard(board);        
+        //printBoard(board);
     }
 
     private void updateBoard()
@@ -234,6 +243,7 @@ public class Life extends PApplet {
     public void draw() {
         background(0);
         drawBoard(board);
+        
         if (space == 1)
         {        
             updateBoard();
