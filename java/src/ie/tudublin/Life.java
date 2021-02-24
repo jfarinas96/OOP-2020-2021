@@ -153,7 +153,14 @@ public class Life extends PApplet {
     public void keyPressed() {
         if (keyCode == ' ')
         {
-            
+            if (space == 1)
+            {
+                space = 0;
+            }
+            else
+            {
+                space = 1;
+            }
         }
         
         if (keyCode == '1')
