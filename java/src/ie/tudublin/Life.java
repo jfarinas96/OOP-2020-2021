@@ -8,7 +8,7 @@ public class Life extends PApplet {
     float cellSize;
     boolean[][] board = new boolean[size][size];
     boolean[][] next = new boolean[size][size];
-
+    
     public int countNeighbours(int row, int col)
     {
         int count = 0;
@@ -144,7 +144,7 @@ public class Life extends PApplet {
 
     public void settings()
     {
-        size(500, 500);
+        size(800, 800);
     }
     
     int mode = 0;
@@ -184,8 +184,29 @@ public class Life extends PApplet {
 
     private void updateBoard()
     {
-        // Put code here to apply the rules!!
-
+        for(int row = 0 ; row < size ; row ++)
+        {
+            for (int col = 0 ; col < size ; col ++)
+            {
+                // check if cell is alive
+                if (board[row][col])
+                {
+                    // check if cell has exactly 2 or 3 neighbours
+                    if (countNeighbours(row, col) == 2 || countNeighbours(row, col) == 3)
+                    {
+                        next[row][col] = true;
+                    }
+                    else
+                    {
+                        next[row][col] = false;
+                    }
+                }
+                else
+                {
+                    next[row][col] = false;
+                }
+            }
+        }
         
         // Swap board and next
         boolean[][] temp = board;
