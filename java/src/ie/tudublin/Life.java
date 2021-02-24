@@ -234,7 +234,7 @@ public class Life extends PApplet {
     public void draw() {
         background(0);
         drawBoard(board);
-        if (space = 1)
+        if (space == 1)
         {        
             updateBoard();
         }
