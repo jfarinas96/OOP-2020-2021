@@ -5,6 +5,7 @@ import processing.core.PApplet;
 public class Life extends PApplet {
 
     int size = 100;
+    int space = 1;
     float cellSize;
     boolean[][] board = new boolean[size][size];
     boolean[][] next = new boolean[size][size];
@@ -144,7 +145,7 @@ public class Life extends PApplet {
 
     public void settings()
     {
-        size(800, 800);
+        size(500, 500);
     }
     
     int mode = 0;
@@ -152,13 +153,17 @@ public class Life extends PApplet {
     public void keyPressed() {
         if (keyCode == ' ')
         {
+            
         }
         
         if (keyCode == '1')
         {
+            randomize();
         }
+
         if (keyCode == '2')
         {
+            
         }
         if (keyCode == '3')
         {
@@ -175,7 +180,7 @@ public class Life extends PApplet {
         board[1][2] = true;
         board[3][2] = true;
         */
-        println(countNeighbours(0, 2));
+        //println(countNeighbours(0, 2));
 
         cellSize = width / (size);
         
@@ -221,7 +226,10 @@ public class Life extends PApplet {
 
     public void draw() {
         background(0);
-        drawBoard(board);        
-        updateBoard();
+        drawBoard(board);
+        if (space = 1)
+        {        
+            updateBoard();
+        }
     }
 }
