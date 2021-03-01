@@ -25,7 +25,7 @@ public class StarMap extends PApplet {
     }
 
     void printStars() {
-        for(Star s:stars) {
+        for (Star s:stars) {
             println(s);
         }
     }
@@ -81,5 +81,6 @@ public class StarMap extends PApplet {
     public void draw() {
         background(0);
         drawGrid();
+        drawStars();
     }
 }
