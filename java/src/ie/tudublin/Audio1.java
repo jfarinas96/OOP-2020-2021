@@ -1,5 +1,7 @@
 package ie.tudublin;
 
+import org.graalvm.compiler.lir.aarch64.AArch64Compare.FloatCompareOp;
+
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
@@ -109,6 +111,7 @@ public class Audio1 extends PApplet {
 
                 break;
             }
+            // waveform down the 4 sides of the screen
             case 2:
             {
                 for (int i = 0; i < ab.size(); i++) {
@@ -125,8 +128,17 @@ public class Audio1 extends PApplet {
 
                 break;
             }
+            // circle
             case 3:
             {
+                float diameter = 30 + (lerpedAverage * 700);
+                float c = map(diameter, 0, ab.size(), 0, 255);
+
+                noFill();
+                stroke(c, 255, 255);
+
+                ellipse(width / 2, height / 2, diameter, diameter);
+
                 break;
             }
             case 4:
