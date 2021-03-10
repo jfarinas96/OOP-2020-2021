@@ -141,8 +141,18 @@ public class Audio1 extends PApplet {
 
                 break;
             }
+            // square
             case 4:
             {
+                float length = 30 + (lerpedAverage * 700);
+                float c = map(length, 0, ab.size(), 0, 255);
+
+                noFill();
+                stroke(c, 255, 255);
+                rectMode(CENTER);
+
+                rect(width / 2, height / 2, length, length);
+
                 break;
             }
             case 5:
