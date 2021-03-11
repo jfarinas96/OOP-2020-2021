@@ -158,20 +158,21 @@ public class Audio1 extends PApplet {
             // spiral
             case 5:
             {
-                float r = 0.1f;
-                int numPoints = 20; // number of points around the circle
+                float r = 1f;
+                int numPoints = 50; // number of points around the circle
                 float thetaInc = TWO_PI / (float) numPoints;
                 float lastX = width / 2, lastY = height / 2;
 
                 strokeWeight(2);
-                stroke(255);
 
                 for (int i = 0 ; i < 1000 ; i++) {
 
+                    float c = map(lerpedAverage * 1000, 0, ab.size(), 0, 255);
+                    stroke(c, 255, 255);
                     float theta = i * thetaInc;
                     float x = width / 2 + sin(theta) * r;
                     float y = height / 2 + cos(theta) * r;
-                    r += 0.5f;
+                    r += 0.2f + lerpedAverage;
                     
                     line(lastX, lastY, x, y);
 
