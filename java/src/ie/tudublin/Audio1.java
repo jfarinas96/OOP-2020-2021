@@ -155,9 +155,30 @@ public class Audio1 extends PApplet {
 
                 break;
             }
+            // spiral
             case 5:
             {
-                // ??
+                float r = 0.1f;
+                int numPoints = 20; // number of points around the circle
+                float thetaInc = TWO_PI / (float) numPoints;
+                float lastX = width / 2, lastY = height / 2;
+
+                strokeWeight(2);
+                stroke(255);
+
+                for (int i = 0 ; i < 1000 ; i++) {
+
+                    float theta = i * thetaInc;
+                    float x = width / 2 + sin(theta) * r;
+                    float y = height / 2 + cos(theta) * r;
+                    r += 0.5f;
+                    
+                    line(lastX, lastY, x, y);
+
+                    lastX = x;
+                    lastY = y;
+                }
+
                 break;
             }
         }        
